@@ -1,0 +1,23 @@
+services:
+  metatrader:
+    image: metatrader-wine
+    container_name: metatrader
+    environment:
+      - DISPLAY=${DISPLAY:-:0}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - mt5:/home/mt5
+    dns:
+      - 8.8.8.8
+    stdin_open: true
+    tty: true
+    restart: on-failure
+    networks:
+      - mynetwork
+
+volumes:
+  mt5:
+
+networks:
+  mynetwork:
+    driver: bridge
