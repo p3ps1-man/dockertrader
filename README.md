@@ -16,7 +16,7 @@ This project enables you to run Metadreader with x11 forwarding i got the inspir
 
 1. Enable access to X server:
 ```bash
-xhost +local
+xhost +local:
 ```
 
 2. Clone repository:
@@ -36,5 +36,18 @@ docker build -t mt5 .
 docker run -it --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix mt5
 ```
 
+5 Or you can use something like this with docker-compose.yaml:
+```bash
+services:
+  metatrader:
+    image: mt5
+    container_name: mt5
+    environment:
+      - DISPLAY=${DISPLAY:-:0}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ./templates/:/home/mt5/program/MQL5/Profiles/Templates/
+      - ./project/:/home/mt5/program/MQL5/Experts/
+```
 
 

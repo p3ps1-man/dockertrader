@@ -5,8 +5,7 @@ ARG GID=1000
 ENV SETUP_URL="https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/mt5setup.exe"
 
 RUN groupadd -g $GID mt5 && \
-    useradd -u $UID -g $GID -m mt5 && \
-    usermod -aG root mt5
+    useradd -u $UID -g $GID -m mt5
 
 RUN echo -e "\n[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 
@@ -33,4 +32,7 @@ RUN Xvfb :99 -screen 0 1024x768x24 & \
         export DISPLAY=:99 && \
         timeout 30s xvfb-run wine setup.exe /auto || true
 
-CMD ["wine", ".wine/drive_c/Program Files/MetaTrader 5/terminal64.exe"]
+RUN mkdir program
+RUN cp -R "./.wine/drive_c/Program Files/MetaTrader 5"/* program/
+
+CMD ["wine", "./program/terminal64.exe"]
