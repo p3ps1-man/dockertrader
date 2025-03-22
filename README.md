@@ -8,7 +8,7 @@ This project enables you to run Metadreader with x11 forwarding i got the inspir
 - Mount your seperate project chart config for you project
 - Mount your project dir so it runs on a seperate instance
 
-![MetaTrader5 running in docker container using x11 forwarding](https://i.postimg.cc/VsSskKrm/Screenshot-From-2025-03-22-15-20-25.png)
+![Mt5](https://postimg.cc/FfdTv8NV)
 
 ## Requirements
 
