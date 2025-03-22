@@ -1,6 +1,6 @@
 # Metatrader 5 docker image
 
-This project enables you to run Metadreader with x11 forwarding. Purpose for this project is to have safe and secure image without using external images. Project is made for linux although you can make it work with windows or macos with software that supports x11 forwarding. When you run the image new window will pop up with the program running so you can mount for example project to Experts or config to profiles.
+This project enables you to run Metadreader with x11 forwarding i got the inspiration from [MetaTrader5-Docker-Image](https://github.com/gmag11/MetaTrader5-Docker-Image). Purpose for this project is to have safe and secure image without using external images. Project is made for linux although you can make it work with windows or macos with software that supports x11 forwarding. When you run the docker container new window will pop up with the program running so you can mount for example project to Experts or config to profiles.
 
 ## Features
 
@@ -8,7 +8,7 @@ This project enables you to run Metadreader with x11 forwarding. Purpose for thi
 - Mount your seperate project chart config for you project
 - Mount your project dir so it runs on a seperate instance
 
-![MetaTrader5 running in docker container using x11 forwarding](https://imgur.com/v6Hm9pa.png)
+![MetaTrader5 running in docker container using x11 forwarding](https://i.postimg.cc/VsSskKrm/Screenshot-From-2025-03-22-15-20-25.png)
 
 ## Requirements
 
