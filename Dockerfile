@@ -2,6 +2,7 @@ FROM archlinux:latest
 
 ARG UID=1000
 ARG GID=1000
+ENV SETUP_URL="https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/mt5setup.exe"
 
 RUN groupadd -g $GID mt5 && \
     useradd -u $UID -g $GID -m mt5 && \
@@ -12,25 +13,24 @@ RUN echo -e "\n[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.co
 RUN pacman -Syu --noconfirm \
     xorg-xinit \
     winetricks \
-    wget
+    wget \
+    xorg-server-xvfb \
+    vulkan-icd-loader
 
 RUN wget https://archive.archlinux.org/packages/w/wine/wine-10.0-1-x86_64.pkg.tar.zst
 RUN pacman -U --noconfirm wine-10.0-1-x86_64.pkg.tar.zst
-
 RUN pacman -S --noconfirm wine-mono wine-gecko
 
-COPY start.sh /home/mt5/start.sh
-RUN chmod +x /home/mt5/start.sh
-
 USER mt5
-
 WORKDIR /home/mt5
 
-ENTRYPOINT ["./start.sh"]
+RUN wget -O setup.exe $SETUP_URL
+RUN xvfb-run winetricks -q corefonts esent vcrun2019
+RUN wineboot -u
 
-#docker volume create mt5
-#docker build -t mt5 .
-#docker run -it --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v mt5:/home/mt5 mt5
-#xhost +local:root
-# COPY start.sh /start.sh
-# RUN chmod +x /start.sh
+RUN Xvfb :99 -screen 0 1024x768x24 & \
+        sleep 20 && \
+        export DISPLAY=:99 && \
+        timeout 30s xvfb-run wine setup.exe /auto || true
+
+CMD ["wine", ".wine/drive_c/Program Files/MetaTrader 5/terminal64.exe"]
