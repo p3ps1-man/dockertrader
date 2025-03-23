@@ -36,7 +36,7 @@ docker build -t mt5 .
 docker run -it --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix mt5
 ```
 
-5 Or you can use something like this with docker-compose.yaml:
+5. Or you can use something like this with docker-compose.yaml (you can mount your project, chart templates, configs, etc):
 ```bash
 services:
   metatrader:
@@ -49,5 +49,7 @@ services:
       - ./templates/:/home/mt5/program/MQL5/Profiles/Templates/
       - ./project/:/home/mt5/program/MQL5/Experts/
 ```
+
+Installation path of Metatrader is ```/home/mt5/program```
 
 

@@ -31,8 +31,10 @@ RUN Xvfb :99 -screen 0 1024x768x24 & \
         sleep 20 && \
         export DISPLAY=:99 && \
         timeout 30s xvfb-run wine setup.exe /auto || true
+        
 
 RUN mkdir program
 RUN cp -R "./.wine/drive_c/Program Files/MetaTrader 5"/* program/
+RUN timeout 30s wine program/terminal64.exe || true
 
 CMD ["wine", "./program/terminal64.exe"]
