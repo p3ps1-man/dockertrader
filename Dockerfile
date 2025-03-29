@@ -10,7 +10,6 @@ RUN groupadd -g $GID mt5 && \
 RUN echo -e "\n[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 
 RUN pacman -Syu --noconfirm \
-    xorg-xinit \
     winetricks \
     wget \
     xorg-server-xvfb \
@@ -37,5 +36,3 @@ RUN mkdir program
 RUN cp -R "./.wine/drive_c/Program Files/MetaTrader 5"/* program/
 RUN timeout 30s wine program/terminal64.exe || true
 RUN rm -rf program/MQL5/Experts/* && rm -rf program/MQL5/Profiles/Templates/*
-
-CMD ["wine", "./program/terminal64.exe"]
