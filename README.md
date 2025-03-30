@@ -1,10 +1,10 @@
 # Metatrader 5 docker image
 
-This is a base image of docker running MetaTrader 5 using wine. This image is published on [Dockerhub](https://hub.docker.com/repository/docker/p3ps1man/dockertrader).
+This is a base image of docker running MetaTrader 5 using wine. This image is published on [Dockerhub](https://hub.docker.com/repository/docker/p3ps1man/dockertrader). X11 server is already pre-configured.
 
 ## Features
 
-- Preinstalled MetaTrader 5, run it using x11 frowarding on vnc
+- Preinstalled MetaTrader 5
 
 ## Requirements
 
