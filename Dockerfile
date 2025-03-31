@@ -1,4 +1,4 @@
-FROM archlinux:multilib-devel
+FROM archlinux:latest
 
 ARG UID=1000
 ARG GID=1000
@@ -6,6 +6,8 @@ ENV SETUP_URL="https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/mt
 
 RUN groupadd -g $GID mt5 && \
     useradd -u $UID -g $GID -m mt5
+
+RUN echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 
 RUN pacman -Sy --noconfirm --needed \
     wget \
@@ -20,7 +22,7 @@ RUN wget -q https://archive.archlinux.org/packages/w/wine/wine-10.0-1-x86_64.pkg
 USER mt5
 WORKDIR /home/mt5
 
-RUN xvfb-run winetricks -q corefonts esent vcrun2019
+RUN xvfb-run winetricks -q corefonts
 
 RUN mkdir program && \
     wget -O setup.exe $SETUP_URL && \
