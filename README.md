@@ -1,6 +1,6 @@
-# Metatrader 5 docker image
+# Metatrader 5 docker image [![](https://img.shields.io/docker/pulls/p3ps1man/dockertrader)](https://hub.docker.com/r/p3ps1man/dockertrader)
 
-This is a base image of docker running MetaTrader 5 using wine. This image is published on [Dockerhub](https://hub.docker.com/r/p3ps1man/dockertrader). X11 server is already pre-configured.
+This is a base image of docker running MetaTrader 5 using wine. X11 server is already pre-configured. This image is base for [dockertrader-x11](https://github.com/p3ps1-man/dockertrader-x11) which just runs the wine localy for development and [dockertrader-vnc](https://github.com/p3ps1-man/dockertrader-vnc) an headless container running novnc that can be monitored via browser.
 
 ## Features
 
@@ -9,6 +9,7 @@ This is a base image of docker running MetaTrader 5 using wine. This image is pu
 ## Requirements
 
 - Docker installed on your machine.
+- x86_64 cpu
 
 ## Usage
 
